@@ -6,7 +6,7 @@ pipeline {
                 echo 'Running build automation'
                }
         }
-        stage('Build Docker Image') {
+        stage('Contruir Imagen Docker') {
             when {
                 branch 'master'
             }
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('Push Docker Image') {
+        stage('Push a DockerHub') {
             when {
                 branch 'master'
             }
@@ -32,12 +32,12 @@ pipeline {
                 }
             }
         }
-        stage('DeployToProduction') {
+        stage('Deploy A Produccion') {
             when {
                 branch 'master'
             }
             steps {
-                input 'Deploy to Production?'
+                input '¿ DESAPLIAGA HACIA PRODUCCION ?'
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
